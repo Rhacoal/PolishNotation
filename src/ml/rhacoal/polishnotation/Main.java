@@ -88,6 +88,9 @@ public class Main {
                 Calculator.Result result = Calculator.calculates(line);
                 NodeBase nb = result.root;
                 HashMap<String, PropositionIdentifierNode> identifierMap = result.identifierMap;
+                if (!(output[0] || output[1] || output[2] || output[3] || output[4])) {
+                    System.out.println("Nothing to output.");
+                }
                 if (output[0]) System.out.println("PN : " + nb.toPolishNotation());
                 if (output[1]) System.out.println("RPN: " + nb.toReversePolishNotation());
                 if (output[2] || output[3] || output[4]) {
@@ -98,7 +101,7 @@ public class Main {
                     }
                     if (output[3]) {
                         int[] pcnf = table.calculatePrincipalConjunctiveNormalForm();
-                        System.out.print("∧");
+                        System.out.print("PCNF: ∧");
                         for (int i = 0; i < pcnf.length; ++ i) {
                             System.out.print(pcnf[i]);
                             if (i != pcnf.length - 1) {
@@ -109,7 +112,7 @@ public class Main {
                     }
                     if (output[4]) {
                         int[] pdnf = table.calculatePrincipalDisjunctiveNormalForm();
-                        System.out.print("∨");
+                        System.out.print("PDNF: ∨");
                         for (int i = 0; i < pdnf.length; ++ i) {
                             System.out.print(pdnf[i]);
                             if (i != pdnf.length - 1) {
