@@ -4,7 +4,6 @@ import ml.rhacoal.polishnotation.node.NodeBase;
 import ml.rhacoal.polishnotation.node.valuenode.PropositionIdentifierNode;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -92,7 +91,7 @@ public class Main {
                 if (output[0]) System.out.println("PN : " + nb.toPolishNotation());
                 if (output[1]) System.out.println("RPN: " + nb.toReversePolishNotation());
                 if (output[2] || output[3] || output[4]) {
-                    Calculator.TruthTable table = Calculator.getTruthTable(nb, 0, identifierMap);
+                    Calculator.TruthTable table = Calculator.getTruthTable(nb,  identifierMap, 0);
                     if (output[2]) {
                         System.out.println("Truth Table");
                         System.out.println(table.toString());

@@ -1,4 +1,4 @@
-package ml.rhacoal.polishnotation.lamba;
+package ml.rhacoal.polishnotation.function;
 
 /**
  * Used by {@link ml.rhacoal.polishnotation.Calculator}

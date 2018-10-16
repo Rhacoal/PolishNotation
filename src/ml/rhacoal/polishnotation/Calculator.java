@@ -1,6 +1,6 @@
 package ml.rhacoal.polishnotation;
 
-import ml.rhacoal.polishnotation.lamba.CharToBoolean;
+import ml.rhacoal.polishnotation.function.CharToBoolean;
 import ml.rhacoal.polishnotation.node.NodeBase;
 import ml.rhacoal.polishnotation.node.NodeType;
 import ml.rhacoal.polishnotation.node.operatornode.OperatorNode;
@@ -270,10 +270,10 @@ public class Calculator {
         /**
          * Constructs a {@link TruthTable}.
          * This constructor accept an {@link ArrayList} of propositions in order and a {@link NodeBase} for calculation.
-         * It is suggested to call {@link Calculator#getTruthTable(NodeBase, HashMap, int, Comparator))}.
+         * It is suggested to call {@link Calculator#getTruthTable(NodeBase, HashMap, int, Comparator)}.
          * <p><b>WARNING: </b>This class can handle at most 31 propositions.</p>
-         * @see Calculator#getTruthTable(NodeBase, HashMap, int, Comparator))
-         * @see Calculator#getTruthTable(NodeBase, int, HashMap)
+         * @see Calculator#getTruthTable(NodeBase, HashMap, int, Comparator)
+         * @see Calculator#getTruthTable(NodeBase, HashMap, int)
          * @param orderedPropositions list of propositions in order
          * @param nodeBase the {@link NodeBase} for calculation.
          */
@@ -329,14 +329,14 @@ public class Calculator {
          * @return the string representation of the truth table
          */
         public String toString(String trueString, String falseString, String separator, String lineSeparator) {
-            StringBuilder buffer = new StringBuilder();
-            propositions.forEach(e -> buffer.append(e).append(separator));
-            buffer.append(nodeBase.toExpression()).append(lineSeparator);
+            StringBuilder builder = new StringBuilder();
+            propositions.forEach(e -> builder.append(e).append(separator));
+            builder.append(nodeBase.toExpression()).append(lineSeparator);
             values.forEach(line -> {
-                line.forEach(e -> buffer.append(e ? trueString : falseString).append(separator));
-                buffer.append(lineSeparator);
+                line.forEach(e -> builder.append(e ? trueString : falseString).append(separator));
+                builder.append(lineSeparator);
             });
-            return buffer.toString();
+            return builder.toString();
         }
 
         /**
@@ -413,8 +413,9 @@ public class Calculator {
      */
     public static TruthTable getTruthTable(
             NodeBase nodeBase,
-            int order,
-            HashMap<String, PropositionIdentifierNode> identifierMap) {
+            HashMap<String, PropositionIdentifierNode> identifierMap,
+            int order
+            ) {
         return getTruthTable(nodeBase, identifierMap, order, null);
     }
 

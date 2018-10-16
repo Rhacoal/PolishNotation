@@ -55,6 +55,7 @@ public class OperatorInfo {
      * This specifies the class.
      * @param name the name of the operator. Used when converting the expression to polish notation
      * @param type the type of the operator. Should be NodeType.UNARY or NodeType.BINARY
+     * @param specialClass the class to
      * @return an {@link OperatorInfo} instance
      */
     public static OperatorInfo createOperatorInfo(String name, NodeType type, Class<? extends OperatorNode> specialClass) {

@@ -18,7 +18,7 @@ public interface NodeBase {
     /**
      * Returns the precedence of the node.
      * <p>The precedence determines the order of calculation. Normally, it should follow these rules:</p>
-     * <p>Binary Operators < Unary Operators < Parenthesis < Values</p>
+     * <p>Binary Operators &lt; Unary Operators &lt; Parenthesis &lt; Values</p>
      * @return the precedence of the node
      */
     int precedence();
@@ -46,6 +46,7 @@ public interface NodeBase {
      * Appends to the {@link StringBuilder} the string representation of the node.
      * This function is designed to be called recursively.
      * This is designed to avoid frequent string connection for better performance.
+     * @param stringBuilder the {@link StringBuilder} to write to
      * @return the original {@link StringBuilder}
      */
     StringBuilder toExpression(StringBuilder stringBuilder);
@@ -63,6 +64,7 @@ public interface NodeBase {
      * Appends to the {@link StringBuilder} the polish notation of the node.
      * This function is designed to be called recursively.
      * This is designed to avoid frequent string connection for better performance.
+     * @param stringBuilder the {@link StringBuilder} to write to
      * @return the original {@link StringBuilder}
      */
     StringBuilder toPolishNotation(StringBuilder stringBuilder);
@@ -80,6 +82,7 @@ public interface NodeBase {
      * Appends to the {@link StringBuilder} the reverse polish notation of the node.
      * This function is designed to be called recursively.
      * This is designed to avoid frequent string connection for better performance.
+     * @param stringBuilder the {@link StringBuilder} to write to
      * @return the original {@link StringBuilder}
      */
     StringBuilder toReversePolishNotation(StringBuilder stringBuilder);
