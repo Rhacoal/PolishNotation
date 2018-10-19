@@ -101,26 +101,36 @@ public class Main {
                     }
                     if (output[3]) {
                         int[] pcnf = table.calculatePrincipalConjunctiveNormalForm();
-                        System.out.print("PCNF: ∧");
-                        for (int i = 0; i < pcnf.length; ++ i) {
-                            System.out.print(pcnf[i]);
-                            if (i != pcnf.length - 1) {
-                                System.out.print(',');
+                        if (pcnf.length > 0) {
+                            System.out.print("PCNF: ∧");
+                            for (int i = 0; i < pcnf.length; ++i) {
+                                System.out.print(pcnf[i]);
+                                if (i != pcnf.length - 1) {
+                                    System.out.print(',');
+                                }
                             }
+                            System.out.println();
+                        } else {
+                            System.out.println("PCNF: empty");
                         }
-                        System.out.println();
                     }
                     if (output[4]) {
                         int[] pdnf = table.calculatePrincipalDisjunctiveNormalForm();
-                        System.out.print("PDNF: ∨");
-                        for (int i = 0; i < pdnf.length; ++ i) {
-                            System.out.print(pdnf[i]);
-                            if (i != pdnf.length - 1) {
-                                System.out.print(',');
+                        if (pdnf.length > 0) {
+                            System.out.print("PDNF: ∨");
+                            for (int i = 0; i < pdnf.length; ++i) {
+                                System.out.print(pdnf[i]);
+                                if (i != pdnf.length - 1) {
+                                    System.out.print(',');
+                                }
                             }
+                            System.out.println();
+                        } else {
+                            System.out.println("PDNF: empty");
+
                         }
-                        System.out.println();
                     }
+                    System.out.println();
                 }
             } catch (CalculationException ce) {
                 System.out.println("Calculation exception occurred: " + ce.getMessage());
