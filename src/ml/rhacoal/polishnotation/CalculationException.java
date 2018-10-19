@@ -1,7 +1,7 @@
 package ml.rhacoal.polishnotation;
 
 /**
- * The class {@link CalculationException} aims at providing users with clear error messages.
+ * The class {@code CalculationException} represents exceptions during calculation.
  */
 public class CalculationException extends Exception {
 

@@ -11,7 +11,7 @@ import ml.rhacoal.polishnotation.node.valuenode.PropositionIdentifierNode;
 import java.util.*;
 
 /**
- * The class Calculator.
+ * The class {@code Calculator} provides an interface for calculation.
  * An instance of calculator uses {@link String} as input and returns a root node for further calculation.
  */
 public class Calculator {

@@ -1,5 +1,9 @@
 package ml.rhacoal.polishnotation.node.operatornode;
 
+/**
+ * Default implementation of <tt>UnaryOperator</tt>.
+ * Provides a constructor using {@link OperatorInfo}.
+ */
 public class DefaultUnaryImpl extends UnaryOperator {
 
     private final OperatorInfo opInfo;

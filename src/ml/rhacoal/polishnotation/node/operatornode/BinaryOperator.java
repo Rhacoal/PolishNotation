@@ -3,8 +3,8 @@ package ml.rhacoal.polishnotation.node.operatornode;
 import ml.rhacoal.polishnotation.node.NodeType;
 
 /**
- * Represents a operator with two children.
- * It is suggested to use {@link OperatorInfo} to create an operator.
+ * Base class of operators with two children.
+ * It is suggested to use {@link OperatorInfo} instead of inheriting this class to create an operator.
  * @see OperatorInfo#createOperatorInfo(String, OperatorInfo.OperatorCalculation, NodeType, int)
  */
 public abstract class BinaryOperator extends OperatorNode {

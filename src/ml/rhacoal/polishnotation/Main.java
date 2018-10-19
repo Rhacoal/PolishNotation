@@ -7,6 +7,9 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * A demo program to demonstrate a few functions of this library.
+ */
 public class Main {
 
     static {

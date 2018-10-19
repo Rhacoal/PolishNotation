@@ -3,7 +3,7 @@ package ml.rhacoal.polishnotation.node.operatornode;
 import ml.rhacoal.polishnotation.node.NodeType;
 
 /**
- * Represents a operator with only one child.
+ * Base class of operators with only one child.
  * This is only suitable for prefix operators since there is no need for suffix operators under this situation.
  * Meanwhile, {@link ParenthesisNode} is an implementation of this node.
  * It is suggested to use {@link OperatorInfo} to create an opeartor.

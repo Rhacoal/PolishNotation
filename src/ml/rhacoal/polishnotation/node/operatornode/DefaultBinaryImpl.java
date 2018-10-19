@@ -1,5 +1,9 @@
 package ml.rhacoal.polishnotation.node.operatornode;
 
+/**
+ * Default implementation of <tt>BinaryOperator</tt>.
+ * Provides a constructor using {@link OperatorInfo}.
+ */
 public class DefaultBinaryImpl extends BinaryOperator {
 
     private final OperatorInfo opInfo;

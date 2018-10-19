@@ -1,5 +1,9 @@
 package ml.rhacoal.polishnotation.node.operatornode;
 
+/**
+ * A parenthesis implementation of <tt>UnaryOperator</tt>.
+ * This class cannot be constructed from {@link OperatorInfo} for the need of precedence change.
+ */
 public class ParenthesisNode extends UnaryOperator {
 
     boolean close = false;

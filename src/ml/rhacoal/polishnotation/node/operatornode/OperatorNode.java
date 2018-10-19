@@ -4,7 +4,7 @@ import ml.rhacoal.polishnotation.node.NodeBase;
 import ml.rhacoal.polishnotation.node.NodeType;
 
 /**
- * Operator.
+ * Base class for all operators.
  */
 public abstract class OperatorNode implements NodeBase {
 

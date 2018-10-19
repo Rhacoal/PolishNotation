@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A node that represents a proposition identifier.
+ * Proposition identifier node.
  * Instances of this class can only be constructed with {@link PropositionIdentifierNode#getIdentifier(Map, String)}. If the identifier
  * already exists, it returns the previous existing identifier.
  */
