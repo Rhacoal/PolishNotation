@@ -45,6 +45,90 @@ public class Main {
             ;
     private static final String[] OUTPUTS = new String[]{"PN", "RPN", "TT", "PCNF", "PDNF"};
 
+    private static class NFResult {
+        private final String CNF, DNF;
+        private NFResult(String cnf, String dnf) {
+            CNF = cnf;
+            DNF = dnf;
+        }
+    }
+
+    private static NFResult readTruthTable(Scanner scanner) {
+        System.out.println("Enter the propositional variables in one line delimited by spaces: ");
+        String propositionsLine;
+        String props[];
+        do {
+            propositionsLine = scanner.nextLine();
+            props = propositionsLine.trim().split("\\p{javaWhitespace}+");
+            if (props.length > 31 || props.length == 0) {
+                System.out.println("Number of propositional variables must be between 1 and 31 (inclusive).");
+                System.out.println("Reenter the line: ");
+            } else {
+                break;
+            }
+        } while(true);
+        int propsCount = props.length;
+        System.out.println("Received " + propsCount +
+                " propositional variables. Please enter the following 2^n lines.");
+        System.out.println("T/F and 1/0 are both accepted. Other inputs are regarded as false.");
+        boolean[] values = new boolean[1 << propsCount];
+        boolean[] visited = new boolean[1 << propsCount];
+        for (int i = 0; i < (1 << propsCount); ++ i) { //read through the lines
+            int index = 0;
+            for (int j = 0; j < propsCount; ++ j) {
+                index <<= 1;
+                String token = scanner.next();
+                index += token.equalsIgnoreCase("T") || token.equalsIgnoreCase("1") ? 1 : 0;
+            }
+            String token = scanner.next();
+            if (visited[index]) {
+                System.out.println("ERROR: Line " + (i + 1) + " is duplicated.");
+                return new NFResult("ERROR", "ERROR");
+            }
+            visited[index] = true;
+            values[index] = token.equalsIgnoreCase("T") || token.equalsIgnoreCase("1");
+        }
+        System.out.println("Input complete. Generating propositional formula...");
+        String no = "¬", and = "∧", or = "∨";
+        //from real lines:
+        StringBuilder builderCNF = new StringBuilder();
+        StringBuilder builderDNF = new StringBuilder();
+        for (int i = 0; i < values.length; ++ i) {
+            if (values[i]) { //true line
+                builderDNF.append('(');
+                for (int j = 0; j < propsCount; ++ j) {
+                    if ((i & (1 << (propsCount - j - 1))) != 0) {
+                        builderDNF.append(no);
+                    }
+                    builderDNF.append(props[j]);
+                    if (j != propsCount - 1) {
+                        builderDNF.append(and);
+                    }
+                }
+                builderDNF.append(")").append(or);
+            } else {
+                builderCNF.append('(');
+                for (int j = 0; j < propsCount; ++ j) {
+                    if ((i & (1 << (propsCount - j - 1))) != 0) {
+                        builderCNF.append(no);
+                    }
+                    builderCNF.append(props[j]);
+                    if (j != propsCount - 1) {
+                        builderCNF.append(or);
+                    }
+                }
+                builderCNF.append(')').append(and);
+            }
+        }
+        if (builderCNF.length() > 0) {
+            builderCNF.delete(builderCNF.length() - 1, builderCNF.length());
+        }
+        if (builderDNF.length() > 0) {
+            builderDNF.delete(builderDNF.length() - 1, builderDNF.length());
+        }
+        return new NFResult(builderCNF.toString(), builderDNF.toString());
+    }
+
     public static void main(String[] args)  {
         Scanner scanner = new Scanner(System.in); // defines and initializes a Scanner instance to read System.in
         System.out.println(BASIC_HELP);
@@ -65,7 +149,7 @@ public class Main {
                                 boolean value = command.length == 2 || command[2].equals("on");
                                 // find the corresponding id of the output
                                 int index = -1;
-                                for (int i = 0; i < OUTPUTS.length; ++ i) {
+                                for (int i = 0; i < OUTPUTS.length; ++i) {
                                     if (OUTPUTS[i].equalsIgnoreCase(command[1])) {
                                         index = i;
                                     }
@@ -83,6 +167,11 @@ public class Main {
                         case ":exit":
                             System.out.println("Exiting...");
                             break mainLoop;
+                        case ":truthtable":
+                            NFResult nfr = readTruthTable(scanner);
+                            System.out.println("CNF: " + nfr.CNF);
+                            System.out.println("DNF: " + nfr.DNF);
+                            break;
                         default:
                             System.out.println("Unknown command: " + command[0]);
                     }
